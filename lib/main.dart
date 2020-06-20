@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,8 +30,8 @@ class _MyHomePageState extends State<MyHomePage> {
     _backgroundColor = Colors.white;
   }
 
+  // Generate random background color
   void _generateBackgroundColor() {
-    // print("Change color");
     setState(() {
       _backgroundColor = Color.fromRGBO(Random().nextInt(256),
           Random().nextInt(256), Random().nextInt(256), Random().nextDouble());
