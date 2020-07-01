@@ -22,20 +22,35 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Color _backgroundColor;
+  Color _backgroundColor, _textColor;
 
   @override
   void initState() {
     super.initState();
     _backgroundColor = Colors.white;
+    _textColor = Colors.black;
   }
 
   // Generate random background color
   void _generateBackgroundColor() {
-    setState(() {
-      _backgroundColor = Color.fromRGBO(Random().nextInt(256),
-          Random().nextInt(256), Random().nextInt(256), Random().nextDouble());
-    });
+    _backgroundColor = _getRandom();
+    _textColor = _getRandom();
+    // _backgroundColor = Color.fromRGBO(
+    //     random.nextInt(256),
+    //     random.nextInt(256),
+    //     random.nextInt(256),
+    //     random.nextDouble());
+    setState(() {});
+  }
+
+  Color _getRandom() {
+    Random random = Random();
+    // return Color.fromARGB(random.nextInt(256), random.nextInt(256),
+    //     random.nextInt(256), random.nextInt(256));
+
+    // fix opacity error, now generate value in [0; 1]
+    return Color.fromRGBO(random.nextInt(256), random.nextInt(256),
+        random.nextInt(256), random.nextInt(pow(10, 7) + 1) / pow(10, 7));
   }
 
   @override
@@ -52,9 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
               "Hey there",
               style: TextStyle(
                   fontSize: 28.0,
-                  color: _backgroundColor == Colors.black
-                      ? Colors.white
-                      : Colors.black),
+                  color: _textColor),
             ),
           ),
           duration: Duration(milliseconds: 500),
