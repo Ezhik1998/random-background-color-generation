@@ -35,11 +35,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void _generateBackgroundColor() {
     _backgroundColor = _getRandom();
     _textColor = _getRandom();
-    // _backgroundColor = Color.fromRGBO(
-    //     random.nextInt(256),
-    //     random.nextInt(256),
-    //     random.nextInt(256),
-    //     random.nextDouble());
     setState(() {});
   }
 
@@ -49,8 +44,13 @@ class _MyHomePageState extends State<MyHomePage> {
     //     random.nextInt(256), random.nextInt(256));
 
     // fix opacity error, now generate value in [0; 1]
+    // return Color.fromRGBO(random.nextInt(256), random.nextInt(256),
+    //     random.nextInt(256), random.nextInt(pow(10, 7) + 1) / pow(10, 7));
+
+    // trigonometric way to get opacity value in [0; 1]
+    double angle = 2 * pi * random.nextDouble();
     return Color.fromRGBO(random.nextInt(256), random.nextInt(256),
-        random.nextInt(256), random.nextInt(pow(10, 7) + 1) / pow(10, 7));
+        random.nextInt(256), sin(angle).abs());
   }
 
   @override
@@ -65,9 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Center(
             child: Text(
               "Hey there",
-              style: TextStyle(
-                  fontSize: 28.0,
-                  color: _textColor),
+              style: TextStyle(fontSize: 28.0, color: _textColor),
             ),
           ),
           duration: Duration(milliseconds: 500),
